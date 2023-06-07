@@ -1,0 +1,28 @@
+GET http://localhost:8000/students
+
+###
+
+GET http://localhost:8000/students/64804199c1c90017f96fe478
+
+###
+
+POST http://localhost:8000/students
+Content-Type: application/json
+
+{
+    "name": "Bryce Graham 3",
+    "class": "DWA"
+}
+###
+
+DELETE http://localhost:8000/students/64804199c1c90017f96fe478
+
+###
+
+PATCH http://localhost:8000/students/64804182c1c90017f96fe476
+Content-Type: application/json
+
+{
+    "name": "Torey Graham",
+    "class": "DWA"
+}

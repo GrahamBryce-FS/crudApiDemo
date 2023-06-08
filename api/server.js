@@ -22,11 +22,11 @@ db.once('open', ()=> console.log("Database connection established"))
 app.use(express.json())
 app.use('/api/v1/students', studentRouter)
 
-app.use(express.static(path.join(__dirname, './reactjs/build')));
+app.use(express.static(path.join(__dirname, '../reactjs/build')));
 
 // request to client side route
 app.get('/*', (req,res) => {
-    res.sendFile(path.join(_dirname, './reactjs/build', 'index.html'));
+    res.sendFile(path.join(_dirname, '../reactjs/build', 'index.html'));
 })
 
 app.listen(PORT, ()=>{

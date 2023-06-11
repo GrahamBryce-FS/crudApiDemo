@@ -4,14 +4,14 @@ import '../App.css';
 
 
 
-function Student() {
-  const [students, setStudents] = useState(null)
+function Movie() {
+  const [movies, setMovies] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
 
   const [values, setValues]= useState({
-    name: '',
-    class:''
+    title: '',
+    director:''
   })
 
 
@@ -26,7 +26,7 @@ function Student() {
     useEffect(() => {
 
       if(!ignore){
-        getStudent();
+        getMovies();
       }
 
       return () => {
@@ -34,17 +34,17 @@ function Student() {
       }
     }, [])
 
-    const getStudent = async () =>{
+    const getMovies = async () =>{
       setLoading(true)
       try {
-        await fetch(`${API_BASE}/students/${id}`)
+        await fetch(`${API_BASE}/movies/${id}`)
                 .then(res => res.json())
                 .then(data =>{
                   console.log({data});
                   // const { name, class } = data
                   setValues({
-                    name:data.name,
-                    class: data.class
+                    title:data.title,
+                    director: data.director
                   })
                 })
       }catch(error) {
@@ -54,14 +54,14 @@ function Student() {
       }
     }
 
-    const deleteStudent = async() => {
+    const deleteMovie = async() => {
       try {
-        await fetch(`${API_BASE}/students/${id}`,{
+        await fetch(`${API_BASE}/movies/${id}`,{
           method: 'DELETE'
         })
                 .then(res => res.json())
                 .then(data =>{
-                  setStudents(data)
+                  setMovies(data)
                   navigate("/dashboard", { replace:true})
                 })
       }catch(error) {
@@ -72,9 +72,9 @@ function Student() {
     }
 
 
-    const updateStudent = async() => {
+    const updateMovie = async() => {
       try {
-        await fetch(`${API_BASE}/students/${id}`,{
+        await fetch(`${API_BASE}/movies/${id}`,{
           method: 'PATCH',
           headers:{
             'Content-Type': 'application/json'
@@ -94,7 +94,7 @@ function Student() {
 
     const handleSubmit = (event) =>{
       event.preventDefault();
-      updateStudent();
+      updateMovie();
     }
 
     const handleInputChanges = (event) =>{
@@ -108,21 +108,21 @@ function Student() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Student profile</h1>
-        <h5>{values && values.name}</h5>
-        <p>{values && values.class}</p>
-        <button onClick={()=> deleteStudent()}>Delete Student</button>
+        <h1>This Movie</h1>
+        <h5>{values && values.title}</h5>
+        <p>{values && values.director}</p>
+        <button onClick={()=> deleteMovie()}>Delete Movie</button>
         <Link to="/" >Home</Link>
         <Link to="/dashboard" >Dashboard</Link>
 
         <form onSubmit={(event)=> handleSubmit(event)}>
           <label>
             Name:
-            <input type='text' name='name' value={values.name} onChange={handleInputChanges}/>
+            <input type='text' name='title' value={values.title} onChange={handleInputChanges}/>
           </label>
           <label>
             Class:
-            <input type='text' name='class' value={values.class} onChange={handleInputChanges}/>
+            <input type='text' name='director' value={values.director} onChange={handleInputChanges}/>
           </label>
           <input type='submit' value="Submit"/>
         </form>
@@ -132,4 +132,4 @@ function Student() {
   );
 }
 
-export default Student;
+export default Movie;

@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 import '../App.css';
 
 function Dashboard() {
-  const [students, setStudents] = useState(null)
+  const [movies, setMovies] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
 
   const [values, setValues]= useState({
-    name: '',
-    class:''
+    title: '',
+    director:''
   })
 
 
@@ -21,7 +21,7 @@ function Dashboard() {
     useEffect(() => {
 
       if(!ignore){
-        getStudents();
+        getMovies();
       }
 
       return () => {
@@ -29,14 +29,14 @@ function Dashboard() {
       }
     }, [])
 
-    const getStudents = async () =>{
+    const getMovies = async () =>{
       setLoading(true)
       try {
-        await fetch(`${API_BASE}/students`)
+        await fetch(`${API_BASE}/movies`)
                 .then(res => res.json())
                 .then(data =>{
                   console.log(API_BASE,{data});
-                  setStudents(data)
+                  setMovies(data)
                 })
       }catch(error) {
         setError(error.message || "Unexpected error")
@@ -45,15 +45,15 @@ function Dashboard() {
       }
     }
 
-    const createStudent = async() => {
+    const createMovies = async() => {
       try {
-        await fetch(`${API_BASE}/students`,{
+        await fetch(`${API_BASE}/movies`,{
           method: 'POST',
           headers:{
             'Content-Type': 'application/json'
           },
           body: JSON.stringify(values)
-        }).then(() => getStudents())
+        }).then(() => getMovies())
       }catch(error) {
         setError(error.message || "Unexpected error")
       } finally {
@@ -64,7 +64,7 @@ function Dashboard() {
 
     const handleSubmit = (event) =>{
       event.preventDefault();
-      createStudent();
+      createMovies();
     }
 
     const handleInputChanges = (event) =>{
@@ -72,30 +72,31 @@ function Dashboard() {
       setValues((values) => ({
         ...values,
         [event.target.name]: event.target.value
+        // might need to change this to tielt
       }))
     }
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Students:</h1>
+        <h1>Movies:</h1>
         <Link to="/" >Home</Link>
         <ul>
           {
-            students && students.map(student => (
-              <li key ={student._id}>
-                <Link to={`/student/${student._id}`}>{student.name}</Link>
+            movies && movies.map(movie => (
+              <li key ={movie._id}>
+                <Link to={`/movie/${movie._id}`}>{movie.title}</Link>
               </li>
             ))
           }
         </ul>
         <form onSubmit={(event)=> handleSubmit(event)}>
           <label>
-            Name:
-            <input type='text' name='name' value={values.name} onChange={handleInputChanges}/>
+            Title:
+            <input type='text' name='title' value={values.title} onChange={handleInputChanges}/>
           </label>
           <label>
-            Class:
-            <input type='text' name='class' value={values.class} onChange={handleInputChanges}/>
+            Director:
+            <input type='text' name='director' value={values.director} onChange={handleInputChanges}/>
           </label>
           <input type='submit' value="Submit"/>
         </form>

@@ -17,7 +17,6 @@ const getMovie = async(req,res,next) => {
     next()
 }
 
-
 router.get('/', async (req,res)=>{
     try {
         const movies = await Movie.find()
@@ -25,9 +24,7 @@ router.get('/', async (req,res)=>{
     } catch(error){
         res.status(500).json({ message: error.message })
     }
-
 })
-
 
 router.get('/:id', getMovie, async (req,res)=>{
     res.json(res.movie)
@@ -36,7 +33,8 @@ router.get('/:id', getMovie, async (req,res)=>{
 router.post('/', async (req,res)=>{
     const movie = new Movie({
         title: req.body.title,
-        director: req.body.director
+        director: req.body.director,
+        genre: req.body.director
     })
     try {
         const newMovie = await movie.save();
@@ -52,6 +50,9 @@ router.patch('/:id', getMovie, async (req, res) => {
     }
     if (req.body.director != null) {
         res.movie.director = req.body.director; 
+    }
+    if (req.body.genre != null) {
+        res.movie.genre = req.body.genre; 
     }
     try {
         const updatedMovie = await res.movie.save();

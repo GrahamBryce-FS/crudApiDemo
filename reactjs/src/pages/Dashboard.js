@@ -9,9 +9,9 @@ function Dashboard() {
 
   const [values, setValues]= useState({
     title: '',
-    director:''
+    director:'',
+    genre:''
   })
-
 
   const API_BASE = process.env.NODE_ENV === 'development' 
     ? `http://localhost:8000/api/v1`
@@ -61,7 +61,6 @@ function Dashboard() {
       }
     }
 
-
     const handleSubmit = (event) =>{
       event.preventDefault();
       createMovies();
@@ -72,14 +71,31 @@ function Dashboard() {
       setValues((values) => ({
         ...values,
         [event.target.name]: event.target.value
-        // might need to change this to tielt
       }))
     }
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Movies:</h1>
-        <Link to="/" >Home</Link>
+        <h1>Movies List Page!</h1>
+        <h2>Add a movie to the list!</h2>
+        <form onSubmit={(event) => handleSubmit(event)}>
+          <div className="input-container">
+            <label>Title:</label>
+            <input className="input-field" type="text" name="title" value={values.title} onChange={handleInputChanges} />
+          </div>
+
+          <div className="input-container">
+            <label>Director:</label>
+            <input className="input-field" type="text" name="director" value={values.director} onChange={handleInputChanges} />
+          </div>
+
+          <div className="input-container">
+            <label>Genre:</label>
+            <input className="input-field" type="text" name="genre" value={values.genre} onChange={handleInputChanges} />
+          </div>
+
+          <input type="submit" value="Submit" className="submit-button" />
+        </form>
         <ul>
           {
             movies && movies.map(movie => (
@@ -89,20 +105,11 @@ function Dashboard() {
             ))
           }
         </ul>
-        <form onSubmit={(event)=> handleSubmit(event)}>
-          <label>
-            Title:
-            <input type='text' name='title' value={values.title} onChange={handleInputChanges}/>
-          </label>
-          <label>
-            Director:
-            <input type='text' name='director' value={values.director} onChange={handleInputChanges}/>
-          </label>
-          <input type='submit' value="Submit"/>
-        </form>
+        <h2>Click on a movie above to update or delete them!</h2>
       </header>
     </div>
   );
 }
 
 export default Dashboard;
+

@@ -10,19 +10,21 @@ POST http://localhost:8000/movies
 Content-Type: application/json
 
 {
-    "title": "Star wars",
-    "director": "George"
+    "title": "Star wars 7",
+    "director": "George",
+    "genre": "Science Fiction"
 }
 ###
 
-DELETE http://localhost:8000/movies/6485dc5bf6f9a0bcb85f9eb4
+DELETE http://localhost:8000/movies/64869f477c4be5e19048a528
 
 ###
 
-PATCH http://localhost:8000/movies/6485dbc9893edc2f536d7706
+PATCH http://localhost:8000/movies/64869f477c4be5e19048a528
 Content-Type: application/json
 
 {
     "title": "Toy Story 2",
-    "director": "My Wife"
+    "director": "My Wife",
+    "genre": "adventure"
 }

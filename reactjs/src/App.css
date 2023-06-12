@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #282c346b;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -35,4 +35,73 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.input-container {
+  gap: 2rem;
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.input-container label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.input-field {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #6c63ff;
+}
+
+.submit-button {
+  padding: 10px 20px;
+  background-color: #6c63ff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.delete-button {
+  padding: 10px 20px;
+  background-color: #ff0040;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #524bff;
+}
+
+h1, h2, h3, h4, h5, p,label {
+  color: #6c63ff
+}
+.nav-bar {
+  background-color: #282c346b;
+}
+
+.movie-info {
+  margin-bottom: 20px;
+}
+
+.movie-info h5 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.movie-info p {
+  font-size: 16px;
+  margin: 0;
 }

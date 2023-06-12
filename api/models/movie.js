@@ -9,6 +9,10 @@ const movieSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    genre:{
+        type: String,
+        required: true
+    },
     created_at:{
         type: Date,
         required: true,
@@ -17,22 +21,3 @@ const movieSchema = new mongoose.Schema({
 })
 
 module.exports = mongoose.model('Movie', movieSchema)
-// const mongoose = require('mongoose');
-
-// const studentSchema = new mongoose.Schema({
-//     name: {
-//         type: String,
-//         required: true
-//     },
-//     class: {
-//         type: String,
-//         required: true
-//     },
-//     created_at:{
-//         type: Date,
-//         required: true,
-//         default: Date.now
-//     }
-// })
-
-// module.exports = mongoose.model('Student', studentSchema)

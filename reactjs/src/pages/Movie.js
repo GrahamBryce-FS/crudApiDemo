@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import '../App.css';
 
-
-
 function Movie() {
   const [movies, setMovies] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -13,7 +11,6 @@ function Movie() {
     title: '',
     director:''
   })
-
 
   const { id } = useParams()
   const navigate = useNavigate();
@@ -44,7 +41,8 @@ function Movie() {
                   // const { name, class } = data
                   setValues({
                     title:data.title,
-                    director: data.director
+                    director: data.director,
+                    genre:data.genre
                   })
                 })
       }catch(error) {
@@ -70,7 +68,6 @@ function Movie() {
         setLoading(false)
       }
     }
-
 
     const updateMovie = async() => {
       try {
@@ -108,25 +105,31 @@ function Movie() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>This Movie</h1>
-        <h5>{values && values.title}</h5>
-        <p>{values && values.director}</p>
-        <button onClick={()=> deleteMovie()}>Delete Movie</button>
-        <Link to="/" >Home</Link>
-        <Link to="/dashboard" >Dashboard</Link>
-
+        <h1>Info About {values && values.title}</h1>
+        <div className="movie-info">
+          <h5>Movie Title:</h5>
+            <p>{values && values.title}</p>
+          <h5>Director:</h5>
+            <p>{values && values.director}</p>
+          <h5>Movie Genre:</h5>
+            <p>{values && values.genre}</p>
+        </div>
         <form onSubmit={(event)=> handleSubmit(event)}>
-          <label>
-            Name:
-            <input type='text' name='title' value={values.title} onChange={handleInputChanges}/>
-          </label>
-          <label>
-            Class:
-            <input type='text' name='director' value={values.director} onChange={handleInputChanges}/>
-          </label>
-          <input type='submit' value="Submit"/>
+          <div className="input-container">
+              <label>Title:</label>
+              <input className="input-field" type="text" name="title" value={values.title} onChange={handleInputChanges} />
+            </div>
+            <div className="input-container">
+              <label>Director:</label>
+              <input className="input-field" type="text" name="director" value={values.director} onChange={handleInputChanges} />
+            </div>
+            <div className="input-container">
+              <label>Genre:</label>
+              <input className="input-field" type="text" name="genre" value={values.genre} onChange={handleInputChanges} />
+            </div>
+            <input type='submit' value="Update" className="submit-button"/>
+            <button className="delete-button" onClick={()=> deleteMovie()}>Delete Movie</button>
         </form>
-
       </header>
     </div>
   );

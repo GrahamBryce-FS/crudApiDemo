@@ -74,4 +74,3 @@ router.delete('/:id',getMovie, async (req,res)=>{
 })
 
 module.exports=router;
-

@@ -34,7 +34,7 @@ router.post('/', async (req,res)=>{
     const movie = new Movie({
         title: req.body.title,
         director: req.body.director,
-        genre: req.body.director
+        genre: req.body.genre
     })
     try {
         const newMovie = await movie.save();

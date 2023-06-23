@@ -8,6 +8,8 @@ function Home() {
         <h1>I need your help making a Movie List!</h1>
         <p>Click on dashboard to help me out!</p>
         <Link to="/dashboard" >Dashboard</Link>
+        <Link to="/login" >Login</Link>
+        <Link to="/signup" >signup</Link>
       </header>
     </div>
   );

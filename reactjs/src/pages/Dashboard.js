@@ -38,14 +38,6 @@ function Dashboard() {
         }
       )
 
-
-      // if(!ignore){
-      //   getMovies();
-      // }
-
-      // return () => {
-      //   ignore = true;
-      // }
     }, [])
 
     const getMovies = async () =>{

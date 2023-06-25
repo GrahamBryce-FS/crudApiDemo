@@ -7,7 +7,7 @@ import Header from './components/header';
 import Login from './pages/Login';
 import SignUp from './pages/Signup';
 import authService from './services/auth.service';
-// might need to capitalize
+
 
 
 function App() {
